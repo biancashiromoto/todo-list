@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mysql2": "2.1.0",
     "sequelize": "6.3.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "6.6.1"
   }
 }
