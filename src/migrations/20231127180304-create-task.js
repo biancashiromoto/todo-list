@@ -3,20 +3,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+    await queryInterface.createTable("tasks", {
+      id: {
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      title: {
+        type: Sequelize.STRING,
+      },
+      priority: {
+        type: Sequelize.ENUM("high", "medium", "low"),
+    },
+    status: {
+        type: Sequelize.ENUM("pending", "in progress", "completed"),
+    }
+    });
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable("tasks");
   }
 };
