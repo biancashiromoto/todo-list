@@ -18,6 +18,10 @@ export const Task = (sequelize: Sequelize, DataTypes: typeof SequelizeDataTypes)
         status: {
             type: DataTypes.ENUM("pending", "in progress", "completed"),
         }
+    }, {
+        timestamps: true,
+        underscored: true,
+        tableName: "tasks"
     });
     return Task;
 }
