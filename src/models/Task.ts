@@ -1,5 +1,5 @@
 "use strict";
-import { Sequelize, DataTypes as SequelizeDataTypes } from 'sequelize';
+import { Model, Sequelize, DataTypes as SequelizeDataTypes } from 'sequelize';
 
 export const Task = (sequelize: Sequelize, DataTypes: typeof SequelizeDataTypes) => {
     const Task = sequelize.define("Task", {
@@ -25,3 +25,5 @@ export const Task = (sequelize: Sequelize, DataTypes: typeof SequelizeDataTypes)
     });
     return Task;
 }
+
+export default Task;
