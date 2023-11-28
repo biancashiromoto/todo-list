@@ -7,5 +7,6 @@ const taskRouter = express.Router();
 taskRouter.get("/", taskController.findAll);
 taskRouter.get("/:id", taskController.findByPk);
 taskRouter.post("/", taskController.register);
+taskRouter.put("/:id", taskController.update);
 
 export default taskRouter;
