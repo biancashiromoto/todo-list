@@ -6,6 +6,13 @@ const findAll = async (req:Request, res: Response) => {
     res.status(status).json(data);
 }
 
+const findByPk = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { status, data } = await taskService.findByPk(Number(id));
+    res.status(status).json(data);
+}
+
 export default {
-    findAll
+    findAll,
+    findByPk
 }
