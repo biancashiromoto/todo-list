@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Express } from "express";
 import taskRouter from "./router/task.router";
 
 const express = require("express");
