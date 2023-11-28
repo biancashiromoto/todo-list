@@ -1,29 +1,35 @@
 "use strict";
-import { Model, Sequelize, DataTypes as SequelizeDataTypes } from 'sequelize';
+import * as dotenv from "dotenv";
+import { Sequelize, DataTypes as SequelizeDataTypes } from 'sequelize';
 
-export const Task = (sequelize: Sequelize, DataTypes: typeof SequelizeDataTypes) => {
-    const Task = sequelize.define("Task", {
-        id: {
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull: false,
-            type: DataTypes.INTEGER
-        },
-        title: {
-            type: DataTypes.STRING,
-        },
-        priority: {
-            type: DataTypes.ENUM("high", "medium", "low"),
-        },
-        status: {
-            type: DataTypes.ENUM("pending", "in progress", "completed"),
-        }
-    }, {
-        timestamps: true,
-        underscored: true,
-        tableName: "tasks"
-    });
-    return Task;
-}
+dotenv.config();
 
-export default Task;
+const sequelize = new Sequelize({
+    dialect: 'mysql',
+    host: "localhost",
+    username: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+  });
+
+export const Task = sequelize.define("Task", {
+    id: {
+        type: SequelizeDataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+    },
+    title: {
+        type: SequelizeDataTypes.STRING,
+        allowNull: false,
+    },
+    priority: {
+        type: SequelizeDataTypes.ENUM("high", "medium", "low"),
+        allowNull: false,
+    },  
+    status: SequelizeDataTypes.ENUM("pending", "in progress", "completed"),
+}, {
+    timestamps: false,
+    underscored: true,
+    tableName: "tasks"
+});
