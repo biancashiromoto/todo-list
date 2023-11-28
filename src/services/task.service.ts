@@ -35,9 +35,15 @@ const update = async (id: TaskType["id"], data: TaskType): Promise<Response> => 
     }
 }
 
+const deleteTask = async (id: TaskType["id"]): Promise<Response> => {
+    await Task.destroy({ where: { id }});
+    return { status: 200, data: `Task with id ${id} successfully deleted.`}
+}
+
 export default {
     findAll,
     findByPk,
     register,
-    update
+    update,
+    deleteTask
 }

@@ -23,9 +23,16 @@ const update = async (req: Request, res: Response) => {
     res.status(status).json(data);
 }
 
+const deleteTask = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { status, data } = await taskService.deleteTask(Number(id));
+    res.status(status).json(data);
+}
+
 export default {
     findAll,
     findByPk,
     register,
-    update
+    update,
+    deleteTask
 }
