@@ -1,11 +1,7 @@
-import taskController from "../controller/task.controller";
 import { Task } from "../models/Task";
 import { TaskType } from "../types/TaskType"
+import { Response } from "../types/Responses";
 
-type Response = {
-    status: number,
-    data: TaskType[],
-}
 
 const findAll = async (): Promise<Response> => {
     const tasks = await Task.findAll();
@@ -13,6 +9,13 @@ const findAll = async (): Promise<Response> => {
     return { status: 200, data: mappedTasks };
 }
 
+const findByPk = async (id: number): Promise<Response> => {
+    const task = await Task.findByPk(id);
+    if (!task) return { status: 404, data: "Error" }
+    return { status: 200, data: task as any }
+}
+
 export default {
-    findAll
+    findAll,
+    findByPk
 }
