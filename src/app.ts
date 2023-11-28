@@ -1,15 +1,18 @@
+import { Request, Response } from "express";
+import { Express } from "express";
+import taskRouter from "./router/task.router";
+
 const express = require("express");
-const router = require("./router");
 
 const app = express();
 
-app.get("/", (_request, response) => {
+app.get("/", (request: Request, response: Response) => {
     response.send("Application running");
 });
 
 app.use(express.json());
 
-app.use("/tasks", router);
+app.use("/tasks", taskRouter);
 
 const port = process.env.API_PORT || 3000;
 
