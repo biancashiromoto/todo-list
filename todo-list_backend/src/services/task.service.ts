@@ -1,7 +1,6 @@
 import { Task } from "../models/Task";
-import { TaskType } from "../types/TaskType"
+import { TaskType } from "../types/TaskType";
 import { Response } from "../types/Responses";
-
 
 const findAll = async (): Promise<Response> => {
     const tasks = await Task.findAll();
