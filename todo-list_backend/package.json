@@ -10,21 +10,27 @@
     "dev": "npm run build && npx nodemon",
     "build": "tsc",
     "start:ts": "ts-node src/app.ts",
-    "dev:ts": "npm run build && npx nodemon --exec npm run start:ts"
+    "dev:ts": "npm run build && npx nodemon --exec npm run start:ts",
+    "db:reset": "npx sequelize-cli db:drop --env development && npx sequelize-cli db:create --env development && npx sequelize-cli db:migrate --env development && npx sequelize-cli db:seed:all --env development",
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mysql2": "2.1.0",
-    "sequelize": "6.3.4"
+    "mysql2": "^3.6.5",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.35.1",
+    "sequelize-typescript": "^2.1.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.17",
+    "@types/validator": "^13.11.7",
     "nodemon": "^3.0.1",
     "sequelize-cli": "6.6.1",
     "ts-node": "^10.9.1",
