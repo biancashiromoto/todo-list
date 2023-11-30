@@ -6,16 +6,18 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - database
-    env_file:
-      - .env
+      database:
+        condition: service_healthy
+    working_dir: /todo-list_backend
+    command: dev
+
     environment:
       API_PORT: 3000
       MYSQL_USER: root
-      # MYSQL_PASSWORD: password
-      MYSQL_HOST: database
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: database_teste
       MYSQL_DATABASE: todo_list
-      MYSQL_ROOT_PASSWORD: password
+      # MYSQL_ROOT_PASSWORD: root_password
 
   frontend:
     container_name: frontend
@@ -26,14 +28,18 @@ services:
       - .env
 
   database:
-    image: mysql:8.0.29
+    image: mysql:8.0.32
     container_name: database
     ports:
       - "3306:3306"
     environment:
       API_PORT: 3000
-      # MYSQL_USER: root
-      # MYSQL_PASSWORD: password
-      MYSQL_HOST: database
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: database_teste
       MYSQL_DATABASE: todo_list
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      # MYSQL_ROOT_PASSWORD: root_password
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
