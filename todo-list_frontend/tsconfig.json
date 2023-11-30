@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "module": "CommonJS",
     "skipLibCheck": true,
+    "outDir": "./dist/",
 
     /* Bundler mode */
     "moduleResolution": "Node",
@@ -21,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  // "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
