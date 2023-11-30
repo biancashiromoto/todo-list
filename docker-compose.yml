@@ -10,6 +10,10 @@ services:
         condition: service_healthy
     working_dir: /todo-list_backend
     command: dev
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
 
     environment:
       API_PORT: 3000
@@ -20,11 +24,19 @@ services:
 
   frontend:
     container_name: frontend
+    depends_on:
+      backend:
+        condition: service_healthy
     build: ./todo-list_frontend
+    working_dir: /todo-list_frontend
     ports:
       - "8080:8080"
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:8080"]
+      timeout: 10s
+      retries: 5
 
   database:
     image: mysql:8.0.32
