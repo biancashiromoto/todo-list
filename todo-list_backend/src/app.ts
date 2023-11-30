@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import taskRouter from "./router/task.router";
 
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
+
+app.use(cors());
 
 app.get("/", (request: Request, response: Response) => {
     response.send("Application running");
