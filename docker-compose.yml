@@ -15,9 +15,8 @@ services:
       API_PORT: 3000
       MYSQL_USER: root
       MYSQL_PASSWORD: password
-      MYSQL_HOST: database_teste
+      MYSQL_HOST: database
       MYSQL_DATABASE: todo_list
-      # MYSQL_ROOT_PASSWORD: root_password
 
   frontend:
     container_name: frontend
@@ -35,10 +34,9 @@ services:
     environment:
       API_PORT: 3000
       MYSQL_PASSWORD: password
-      MYSQL_HOST: database_teste
+      MYSQL_HOST: database
       MYSQL_DATABASE: todo_list
       MYSQL_ALLOW_EMPTY_PASSWORD: true
-      # MYSQL_ROOT_PASSWORD: root_password
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
