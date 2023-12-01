@@ -12,7 +12,7 @@ services:
     command: dev
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
-      timeout: 20s
+      timeout: 10s
       retries: 5
 
     environment:
@@ -32,7 +32,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:8080"]
-      timeout: 20s
+      timeout: 10s
       retries: 5
 
   database:
@@ -43,11 +43,13 @@ services:
     environment:
       API_PORT: 3000
       # MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_HOST: ${MYSQL_HOST}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      # MYSQL_HOST: ${MYSQL_HOST}
+      # MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
+      # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
