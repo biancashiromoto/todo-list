@@ -1,4 +1,5 @@
 todo-list_backend/node_modules
 todo-list_frontend/node_modules
+node_modules
 .env
 todo-list_backend/dist
