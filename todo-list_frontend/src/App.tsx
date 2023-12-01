@@ -19,12 +19,11 @@ function App() {
       <h1>Todo list</h1>
       {data.length > 0 ? (
         data.map((task: Task) => (
-        <div>
+        <div key={task.id} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" checked={task.status === "completed" ? true : false} />
             {task.title}
           </label>
-          <p>Status: {task.status}</p>
           <p>Priority: {task.priority}</p>
         </div>
         ))
