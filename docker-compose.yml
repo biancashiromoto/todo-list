@@ -17,10 +17,10 @@ services:
 
     environment:
       API_PORT: 3000
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_HOST: database
-      MYSQL_DATABASE: todo_list
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
   frontend:
     container_name: frontend
@@ -42,10 +42,12 @@ services:
       - "3306:3306"
     environment:
       API_PORT: 3000
-      MYSQL_PASSWORD: password
-      MYSQL_HOST: database
-      MYSQL_DATABASE: todo_list
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      # MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
