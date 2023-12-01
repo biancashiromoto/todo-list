@@ -1,4 +1,4 @@
-import { Task } from "../models/Task";
+import { Task } from "../database/models/Task.model";
 import { TaskType } from "../types/TaskType";
 import { Response } from "../types/Responses";
 
