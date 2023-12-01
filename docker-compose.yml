@@ -14,13 +14,14 @@ services:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
       retries: 5
-
     environment:
       API_PORT: 3000
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    env_file:
+      - .env
 
   frontend:
     container_name: frontend
@@ -42,14 +43,14 @@ services:
       - "3306:3306"
     environment:
       API_PORT: 3000
-      # MYSQL_USER: ${MYSQL_USER}
-      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      # MYSQL_HOST: ${MYSQL_HOST}
-      # MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     env_file:
       - .env
-      # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
+    # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
