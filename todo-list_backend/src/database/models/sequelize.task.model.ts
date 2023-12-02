@@ -1,5 +1,4 @@
 "use strict";
-import * as dotenv from "dotenv";
 import { Sequelize, DataTypes as SequelizeDataTypes } from 'sequelize';
 
 const sequelize: Sequelize = new Sequelize({
@@ -10,7 +9,7 @@ const sequelize: Sequelize = new Sequelize({
     database: process.env.MYSQL_DATABASE,
   });
 
-export const Task = sequelize.define("Task", {
+export const SequelizeTask = sequelize.define("Task", {
     id: {
         type: SequelizeDataTypes.INTEGER,
         primaryKey: true,
