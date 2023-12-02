@@ -1,6 +1,20 @@
-import { TaskType } from "./TaskType";
+import { ITask } from "../interfaces/ITask";
 
-export type Response = {
-    status: number,
-    data: TaskType | TaskType[] | string,
+export type MessageType = { message: string };
+
+export type ResponseErrorType =
+  'INVALID_DATA' |
+  'UNAUTHORIZED' |
+  'NOT_FOUND' |
+  'CONFLICT' |
+  'UNPROCESSABLE_ENTITY';
+
+export type ResponseSuccess = {
+    status: 'SUCCESSFUL' | 'CREATED',
+    data: ITask | ITask[] | MessageType,
+}
+
+export type ResponseError = {
+    status: ResponseErrorType,
+    data: MessageType,
 }
