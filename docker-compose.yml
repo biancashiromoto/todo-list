@@ -17,7 +17,6 @@ services:
     environment:
       API_PORT: ${API_PORT}
       MYSQL_USER: ${MYSQL_USER}
-      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     env_file:
@@ -35,6 +34,9 @@ services:
       test: ["CMD", "lsof", "-t", "-i:8080"]
       timeout: 10s
       retries: 5
+    depends_on:
+      backend:
+        condition: service_healthy 
 
   database:
     image: mysql:8.0.32
@@ -43,12 +45,9 @@ services:
       - "3306:3306"
     environment:
       API_PORT: ${API_PORT}
-      # MYSQL_USER: ${MYSQL_USER}
-      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     env_file:
       - .env
     healthcheck:
