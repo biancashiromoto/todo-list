@@ -1,6 +1,6 @@
-import { Task } from "../types/Task";
+import { TaskType } from "../types/TaskType";
 
-export const mockTasks: Task[] = [
+export const mockTasks: TaskType[] = [
     {
         "id": 1,
         "title": "Sample task 01",
