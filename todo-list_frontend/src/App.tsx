@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 // import axios from "axios";
-import { Task } from "./types/Task";
+import { TaskType } from "./types/TaskType";
 import { mockTasks } from "./mocks/tasks.mock";
+import Task from "./components/Task/Task";
 
 
 function App() {
-  const [data, setData] = useState<Task[]>([]);
+  const [data, setData] = useState<TaskType[]>([]);
   
   useEffect(() => {
     // axios.get("http://localhost:3000/tasks").then(response => {
@@ -20,14 +21,8 @@ function App() {
     <>
       <h1>Todo list</h1>
       {data.length > 0 ? (
-        data.map((task: Task) => (
-        <div key={task.id} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <label>
-            <input type="checkbox" checked={task.status === "completed" ? true : false} />
-            {task.title}
-          </label>
-          <p>Priority: {task.priority}</p>
-        </div>
+        data.map((task: TaskType) => (
+          <Task task={task}/>
         ))
       ) : ""}
     </>
