@@ -3,14 +3,14 @@ import { ITask } from "../interfaces/ITask";
 export type MessageType = { message: string };
 
 export type ResponseErrorType =
-  'INVALID_DATA' |
-  'UNAUTHORIZED' |
-  'NOT_FOUND' |
-  'CONFLICT' |
-  'UNPROCESSABLE_ENTITY';
+  "INVALID_DATA" |
+  "UNAUTHORIZED" |
+  "NOT_FOUND" |
+  "CONFLICT" |
+  "UNPROCESSABLE_ENTITY";
 
 export type ResponseSuccess = {
-    status: 'SUCCESSFUL' | 'CREATED',
+    status: "SUCCESSFUL" | "CREATED",
     data: ITask | ITask[] | MessageType,
 }
 

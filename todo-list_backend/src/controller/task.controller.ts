@@ -9,7 +9,7 @@ export default class TaskController {
         this.taskService = new TaskService();
     }
 
-    public findAll = async (req: Request, res: Response) => {
+    public findAll = async (_req: Request, res: Response) => {
         const { status, data } = await this.taskService.findAll();
         res.status(mapStatusHTTP(status)).json(data);
     }
