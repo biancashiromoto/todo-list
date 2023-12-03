@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.ENUM("high", "medium", "low"),
     },
     status: {
-        type: Sequelize.ENUM("pending", "in progress", "completed"),
+        type: Sequelize.ENUM("pending", "completed"),
     }
     });
   },

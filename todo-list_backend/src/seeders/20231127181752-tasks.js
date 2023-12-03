@@ -8,7 +8,7 @@ module.exports = {
       {
         title: "Sample task 01",
         priority: "medium",
-        status: "in progress",
+        status: "pending",
       },
       {
         title: "Sample task 02",

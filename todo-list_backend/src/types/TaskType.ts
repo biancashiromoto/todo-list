@@ -1,5 +1,5 @@
 export type Priority = "high" | "medium" | "low";
-export type Status = "pending" | "in progress" | "completed";
+export type Status = "pending" | "completed";
 
 export type TaskType = {
     id: number,

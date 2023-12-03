@@ -5,7 +5,7 @@ export const mockTasks: TaskType[] = [
         "id": 1,
         "title": "Sample task 01",
         "priority": "medium",
-        "status": "in progress"
+        "status": "pending"
     },
     {
         "id": 2,

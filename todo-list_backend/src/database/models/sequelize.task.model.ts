@@ -24,7 +24,7 @@ export const SequelizeTask = sequelize.define("Task", {
         type: SequelizeDataTypes.ENUM("high", "medium", "low"),
         allowNull: false,
     },  
-    status: SequelizeDataTypes.ENUM("pending", "in progress", "completed"),
+    status: SequelizeDataTypes.ENUM("pending", "completed"),
 }, {
     timestamps: false,
     underscored: true,

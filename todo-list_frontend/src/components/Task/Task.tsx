@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TaskType } from "../../types/TaskType";
 
 interface TaskProps {
@@ -5,12 +6,18 @@ interface TaskProps {
 }
 
 function Task({ task }: TaskProps) {
+  const [isTaskCompleted, setIsTaskCompleted] = useState<boolean>(task.status === "completed" ? true: false);
+
   return (
     <div>
       <label>
         <input
           type="checkbox"
-          checked={task.status === "completed" ? true : false}
+          checked={isTaskCompleted}
+          onChange={() => {
+            setIsTaskCompleted(prevState => !prevState);
+            
+          }}
         />
         {task.title}
       </label>
