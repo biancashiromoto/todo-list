@@ -1,8 +1,9 @@
-import taskController from "../controller/task.controller";
+import TaskController from "../controller/task.controller";
 
 const express = require("express");
 
 const taskRouter = express.Router();
+const taskController = new TaskController();
 
 taskRouter.get("/", taskController.findAll);
 taskRouter.get("/:id", taskController.findByPk);
