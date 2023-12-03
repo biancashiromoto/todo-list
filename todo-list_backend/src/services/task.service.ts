@@ -1,6 +1,6 @@
 import { ITask } from "../interfaces/ITask";
 import TaskModel from "../models/task.model";
-import { ResponseError, ResponseErrorType, ResponseSuccess } from "../types/Responses";
+import { ResponseError, ResponseSuccess } from "../types/Responses";
 import { TaskType } from "../types/TaskType";
 
 export default class TaskService {
