@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import axios from "axios";
+// import axios from "axios";
 import { Task } from "./types/Task";
+import { mockTasks } from "./mocks/tasks.mock";
 
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Task[]>([]);
   
   useEffect(() => {
-    axios.get("http://localhost:3000/tasks").then(response => {
-      console.log(response.data);
-      setData(response.data);
-    })
+    // axios.get("http://localhost:3000/tasks").then(response => {
+    //   console.log(response.data);
+    //   setData(response.data);
+    // });
+    setData(mockTasks);
   }, []);
 
   return (
