@@ -48,9 +48,9 @@ services:
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     env_file:
       - .env
-    # MYSQL_ALLOW_EMPTY_PASSWORD: true # CHANGE
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
