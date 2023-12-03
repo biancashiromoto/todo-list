@@ -20,11 +20,13 @@ function App() {
   return (
     <>
       <h1>Todo list</h1>
-      {data.length > 0 ? (
-        data.map((task: TaskType) => (
-          <Task task={task}/>
-        ))
-      ) : ""}
+      <article className="task__list">
+        {data.length > 0 ? (
+          data.map((task: TaskType) => (
+            <Task task={task}/>
+          ))
+        ) : ""}
+      </article>
     </>
   )
 }
