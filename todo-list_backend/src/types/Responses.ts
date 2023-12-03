@@ -18,3 +18,8 @@ export type ResponseError = {
     status: ResponseErrorType,
     data: MessageType,
 }
+
+export type TaskServiceResponse<T> = {
+  status: number,
+  data: T
+}
