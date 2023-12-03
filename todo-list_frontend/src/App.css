@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.task__list {
+  margin: 0 auto;
+  width: 50vw;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
