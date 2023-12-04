@@ -2,19 +2,25 @@ import { useEffect, useState } from "react";
 import "./App.css";
 // import axios from "axios";
 import { TaskType } from "./types/TaskType";
-import { mockTasks } from "./mocks/tasks.mock";
+// import { mockTasks } from "./mocks/tasks.mock";
 import Task from "./components/Task/Task";
+import Requests from "./services/requests";
 
+const requests = new Requests();
 
 function App() {
   const [data, setData] = useState<TaskType[]>([]);
   
   useEffect(() => {
-    // axios.get("http://localhost:3000/tasks").then(response => {
-    //   console.log(response.data);
-    //   setData(response.data);
-    // });
-    setData(mockTasks);
+    const fetchData = async () => {
+      try {
+        const tasks = await requests.findAll();
+        setData(tasks);
+      } catch (error) {
+        console.error("ERROR: ", error);
+      }
+    }
+    fetchData();
   }, []);
 
   return (
@@ -23,9 +29,9 @@ function App() {
       <article className="task__list">
         {data.length > 0 ? (
           data.map((task: TaskType) => (
-            <Task task={task}/>
+            <Task key={task.id} task={task}/>
           ))
-        ) : ""}
+        ) : "No tasks."}
       </article>
     </>
   )
