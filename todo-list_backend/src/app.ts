@@ -8,7 +8,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-app.use(cors());
+const FRONTEND_PORT = process.env.FRONTEND_PORT;
+
+const corsOptions = {
+    origin: [`http://localhost:${FRONTEND_PORT}`],
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 app.get("/", (request: Request, response: Response) => {
     response.send("Application running");
