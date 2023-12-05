@@ -9,7 +9,7 @@ services:
       database:
         condition: service_healthy
     working_dir: /todo-list_backend
-    command: dev
+    # command: db:reset
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
@@ -39,6 +39,7 @@ services:
       # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     env_file:
       - .env
+    command: npm start
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:8080"]
       timeout: 10s
@@ -56,11 +57,11 @@ services:
       API_PORT: ${API_PORT}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       ALLOW_EMPTY_PASSWORD: true
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
