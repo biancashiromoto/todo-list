@@ -11,8 +11,9 @@ const requests = new Requests();
 
 function Task({ task }: TaskProps) {
   const [isTaskCompleted, setIsTaskCompleted] = useState<boolean>(task.status === "completed");
+  const [priority, setPriority] = useState(task.priority);
 
-  const handleChange = async (e: ChangeEvent<HTMLInputElement> | FormEvent<HTMLParagraphElement>, task: TaskType) => {
+  const handleChange = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement> | FormEvent<HTMLParagraphElement>, task: TaskType) => {
     if ("checked" in e.target) {
       const { checked } = e.target;
 
@@ -24,23 +25,34 @@ function Task({ task }: TaskProps) {
       try {
         task = await requests.update(updatedTask);
         setIsTaskCompleted(task.status === "completed");
-        console.log("status: ", task.status);
       } catch (error) {
         console.error("Error updating task: ", error);
       }
     } else {
-      const { innerText } = e.target as HTMLDivElement;
       const updatedTask = {
         ...task,
-        title: innerText,
+        title: e.currentTarget.textContent || "",
       }
       try {
         task = await requests.update(updatedTask);
-        console.log(task.title);
       } catch (error) {
         console.error("Error updating task: ", error);
       }
     }
+  }
+
+  const changePriority = async (e: ChangeEvent<HTMLSelectElement>, task: TaskType) => {
+    const selectedPriority = e.target.value;
+      const updatedTask = {
+        ...task,
+        priority: selectedPriority,
+      }
+      try {
+        task = await requests.update(updatedTask);
+        setPriority(selectedPriority);
+      } catch (error) {
+        console.error("Error updating task: ", error);
+      }
   }
 
   return (
@@ -59,7 +71,18 @@ function Task({ task }: TaskProps) {
         >
           {task.title}
         </p>
-        <p>{task.priority}</p>
+        <select
+          title="priority"
+          value={priority}
+          onChange={(e) => {
+            changePriority(e, task);
+          }}
+          name="priority"
+        >
+          <option value="high">high</option>
+          <option value="medium">medium</option>
+          <option value="low">low</option>
+        </select>
         <p>{isTaskCompleted ? "completed" : "pending"}</p>
     </div>
   )
