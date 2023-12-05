@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 import Requests from "../services/requests";
 import { TaskType } from "../types/TaskType";
 
@@ -43,7 +43,7 @@ export default class Utils {
     const selectedPriority = e.target.value;
       const updatedTask = {
         ...task,
-        priority: selectedPriority,
+        priority: e.target.value,
       }
       try {
         task = await this.requests.update(updatedTask);
@@ -51,6 +51,32 @@ export default class Utils {
       } catch (error) {
         console.error("Error updating task: ", error);
       }
+  }
+
+  /**
+   * changeTitle
+   */
+  public async changeTitle(
+    e: FormEvent<HTMLParagraphElement>,
+    task: TaskType,
+    setTitle: Dispatch<SetStateAction<TaskType["title"]>>
+  ) {
+    const newTitle = e.currentTarget.textContent;
+
+    if (!newTitle) {
+      throw new Error("Task must have a title.");
+    }
+
+    const updatedTask = {
+      ...task,
+      title: newTitle,
+    }
+    try {
+      task = await this.requests.update(updatedTask);
+      setTitle(newTitle);
+    } catch (error) {
+      console.error("Error updating task: ", error);
+    }
   }
   
 }

@@ -16,21 +16,6 @@ function Task({ task }: TaskProps) {
   const [priority, setPriority] = useState(task.priority);
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement | HTMLSelectElement> | FormEvent<HTMLParagraphElement>, task: TaskType) => {
-    // if ("checked" in e.target) {
-    //   const { checked } = e.target;
-
-    //   const updatedTask = {
-    //     ...task,
-    //     status: checked ? "completed" : "pending",
-    //   }
-
-    //   try {
-    //     task = await requests.update(updatedTask);
-    //     setIsTaskCompleted(task.status === "completed");
-    //   } catch (error) {
-    //     console.error("Error updating task: ", error);
-    //   }
-    // } else {
       const updatedTask = {
         ...task,
         title: e.currentTarget.textContent || "",
@@ -41,21 +26,6 @@ function Task({ task }: TaskProps) {
         console.error("Error updating task: ", error);
       }
     }
-  // }
-
-  const changePriority = async (e: ChangeEvent<HTMLSelectElement>, task: TaskType) => {
-    const selectedPriority = e.target.value;
-      const updatedTask = {
-        ...task,
-        priority: selectedPriority,
-      }
-      try {
-        task = await requests.update(updatedTask);
-        setPriority(selectedPriority);
-      } catch (error) {
-        console.error("Error updating task: ", error);
-      }
-  }
 
   return (
     <div className="task__item">
@@ -80,7 +50,7 @@ function Task({ task }: TaskProps) {
           title="priority"
           value={priority}
           onChange={(e) => {
-            changePriority(e, task);
+            utils.changePriority(e, task, setPriority);
           }}
           name="priority"
         >
