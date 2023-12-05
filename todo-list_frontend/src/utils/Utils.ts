@@ -31,5 +31,26 @@ export default class Utils {
         console.error("Error updating task: ", error);
       }
   }
+
+  /**
+   * changePriority
+   */
+  public async changePriority(
+    e: ChangeEvent<HTMLSelectElement>,
+    task: TaskType,
+    setPriority: Dispatch<SetStateAction<TaskType["priority"]>>
+  ) {
+    const selectedPriority = e.target.value;
+      const updatedTask = {
+        ...task,
+        priority: selectedPriority,
+      }
+      try {
+        task = await this.requests.update(updatedTask);
+        setPriority(selectedPriority);
+      } catch (error) {
+        console.error("Error updating task: ", error);
+      }
+  }
   
 }
