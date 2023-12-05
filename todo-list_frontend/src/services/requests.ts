@@ -21,8 +21,8 @@ export default class Requests {
 
   public async update(task: TaskType) {
     try {
-      const { id, status } = task;
-      const response = await axios.put(`${this.API_URL}/${id}`, { status });
+      const { id } = task;
+      const response = await axios.put(`${this.API_URL}/${id}`, task);
       return response.data;
     } catch (error) {
       console.error("ERROR: ", error);
