@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TaskType } from "../../types/TaskType";
 import "./Task.css";
 import Utils from "../../utils/Utils";
-import { TaskProps } from "../../interfaces/TaskProp";
+import { TaskProps } from "../../interfaces/Props";
 
 const utils = new Utils();
 
-function Task({ task }: TaskProps) {
-  // const [priority, setPriority] = useState<TaskType["priority"]>(task.priority);
+function Task({ task, setData }: TaskProps) {
 
   const [currTask, setCurrTask] = useState<TaskType>({
     id: task.id,
@@ -15,10 +14,6 @@ function Task({ task }: TaskProps) {
     priority: task.priority,
     status: task.status,
   });
-
-  useEffect(() => {
-    console.log(currTask);
-  }, [currTask])
 
   return (
     <div className="task__item">
@@ -55,9 +50,10 @@ function Task({ task }: TaskProps) {
         <p>{currTask.status}</p>
         <button
           type="button"
-          onClick={(e) => {
+          onClick={async (e) => {
             e.preventDefault();
-            utils.deleteTask(task.id);
+            const tasks = await utils.deleteTask(task.id);
+            setData(tasks);
           }}
         >
         Delete task
