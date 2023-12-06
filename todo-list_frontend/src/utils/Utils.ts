@@ -16,7 +16,7 @@ export default class Utils {
   public async changeStatus(
     e: ChangeEvent<HTMLInputElement>,
     task: TaskType,
-    setIsTaskCompleted: Dispatch<SetStateAction<boolean>>
+    setTask: Dispatch<SetStateAction<TaskType>>
     ) {
     const { checked } = e.target;
 
@@ -27,7 +27,7 @@ export default class Utils {
 
       try {
         task = await requests.update(updatedTask);
-        setIsTaskCompleted(task.status === "completed");
+        setTask(updatedTask);
       } catch (error) {
         console.error("Error updating task: ", error);
       }
