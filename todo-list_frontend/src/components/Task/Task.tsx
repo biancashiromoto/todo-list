@@ -2,10 +2,7 @@ import { useState } from "react";
 import { TaskType } from "../../types/TaskType";
 import "./Task.css";
 import Utils from "../../utils/Utils";
-
-interface TaskProps {
-    task: TaskType,
-}
+import { TaskProps } from "../../interfaces/TaskProp";
 
 const utils = new Utils();
 
@@ -26,13 +23,15 @@ function Task({ task }: TaskProps) {
           }}
           name="status"
           />
-        <p
-          contentEditable={true}
-          onInput={(e) => utils.changeTitle(e, task, setTitle)}
-          suppressContentEditableWarning={true}
-        >
-          {title}
-        </p>
+        <label htmlFor={`task-name-${task.id}`}>
+          <span style={{display: "none"}}>Task: </span>
+          <input
+            name={`task-name-${task.id}`}
+            type="text"
+            value={title}
+            onChange={(e) => utils.changeTitle(e, task, setTitle)}
+          />
+        </label>
         <select
           title="priority"
           value={priority}
