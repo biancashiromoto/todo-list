@@ -15,7 +15,6 @@ export default class Requests {
       return response.data;
     } catch (error) {
       console.error("ERROR: ", error);
-      throw error;
     }
   }
 
@@ -26,7 +25,6 @@ export default class Requests {
       return response.data;
     } catch (error) {
       console.error("ERROR: ", error);
-      throw error;
     }
   }
 
@@ -39,7 +37,18 @@ export default class Requests {
       return response.data;
     } catch (error) {
       console.error("ERROR: ", error);
-      throw error;
+    }
+  }
+
+  /**
+   * delete
+   */
+  public async delete(id: TaskType["id"]) {
+    try {
+      const response = await axios.delete(`${this.API_URL}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("ERROR: ", error);
     }
   }
 }
