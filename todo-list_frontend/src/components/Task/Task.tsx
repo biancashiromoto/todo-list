@@ -7,8 +7,7 @@ import { TaskProps } from "../../interfaces/TaskProp";
 const utils = new Utils();
 
 function Task({ task }: TaskProps) {
-  const [priority, setPriority] = useState<TaskType["priority"]>(task.priority);
-  // const [title, setTitle] = useState<TaskType["title"]>(task.title);
+  // const [priority, setPriority] = useState<TaskType["priority"]>(task.priority);
 
   const [currTask, setCurrTask] = useState<TaskType>({
     id: task.id,
@@ -43,9 +42,9 @@ function Task({ task }: TaskProps) {
         </label>
         <select
           title="priority"
-          value={priority}
+          value={currTask.priority}
           onChange={(e) => {
-            utils.changePriority(e, task, setPriority);
+            utils.changePriority(e, task, setCurrTask);
           }}
           name="priority"
         >
