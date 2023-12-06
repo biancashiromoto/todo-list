@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { FormProps } from "../../interfaces/Props";
 import { NewTaskType } from "../../types/TaskType";
 import Utils from "../../utils/Utils";
 
 const utils = new Utils();
 
-function Form() {
+function Form({ data, setData }: FormProps) {
   const [newTask, setNewTask] = useState<NewTaskType>({
     title: "",
     priority: "low",
@@ -37,9 +38,10 @@ function Form() {
       </select>
       <button
         type="button"
-        onClick={(e) => {
+        onClick={async (e) => {
           e.preventDefault();
-          utils.createTask(newTask);
+          const createdTask = await utils.createTask(newTask, setNewTask);
+          setData([...data, createdTask]);
         }}
       >
         Create task
