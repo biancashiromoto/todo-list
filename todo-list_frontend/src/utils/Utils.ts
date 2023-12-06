@@ -4,11 +4,6 @@ import { NewTaskType, TaskType } from "../types/TaskType";
 
 const requests = new Requests();
 export default class Utils {
-  // private requests: Requests;
-
-  constructor() {
-    // this.requests = new Requests();
-  }
 
   /**
    * changeStatus
@@ -83,10 +78,15 @@ export default class Utils {
   /**
    * createTask
    */
-  public async createTask(task: NewTaskType,) {
+  public async createTask(task: NewTaskType, setNewTask: Dispatch<React.SetStateAction<NewTaskType>>) {
     try {
       const createdTask = await requests.register(task);
-      console.log(createdTask);
+      setNewTask({
+        title: "",
+        priority: "low",
+        status: "pending"
+      });
+      return createdTask;
     } catch (error) {
       console.error("Error creating task: ", error);
     }
@@ -97,8 +97,9 @@ export default class Utils {
    */
   public async deleteTask(id: TaskType["id"]) {
     try {
-      const message = await requests.delete(id);
-      console.log(message);
+      await requests.delete(id);
+      const tasks = await requests.findAll();
+      return tasks;
     } catch (error) {
       console.error("Error creating task: ", error);
     }
