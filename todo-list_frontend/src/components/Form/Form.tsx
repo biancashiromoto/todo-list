@@ -1,5 +1,3 @@
-// import { TaskProps } from "../../interfaces/TaskProp";
-
 import { useState } from "react";
 import { NewTaskType } from "../../types/TaskType";
 import Utils from "../../utils/Utils";
@@ -12,10 +10,6 @@ function Form() {
     priority: "low",
     status: "pending"
   });
-
-  // useEffect(() => {
-  //   console.log(newTask);
-  // }, [newTask]);
 
   return (
     <form>
