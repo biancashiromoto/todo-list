@@ -45,6 +45,15 @@ function Task({ task }: TaskProps) {
           <option value="low">low</option>
         </select>
         <p>{isTaskCompleted ? "completed" : "pending"}</p>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            utils.deleteTask(task.id);
+          }}
+        >
+        Delete task
+      </button>
     </div>
   )
 }
