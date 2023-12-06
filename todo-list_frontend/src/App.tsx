@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-// import axios from "axios";
 import { TaskType } from "./types/TaskType";
-// import { mockTasks } from "./mocks/tasks.mock";
+import { mockTasks } from "./mocks/tasks.mock";
 import Task from "./components/Task/Task";
+import Form from "./components/Form/Form";
 import Requests from "./services/requests";
 
 const requests = new Requests();
@@ -20,6 +20,7 @@ function App() {
         console.error("ERROR: ", error);
       }
     }
+    setData(mockTasks);
     fetchData();
   }, []);
 
@@ -33,6 +34,7 @@ function App() {
           ))
         ) : "No tasks."}
       </article>
+      <Form />
     </>
   )
 }
