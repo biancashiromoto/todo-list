@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { TaskType } from "../types/TaskType";
+import { NewTaskType, TaskType } from "../types/TaskType";
 
 export default class Requests {
   private API_URL: string;
@@ -23,6 +23,19 @@ export default class Requests {
     try {
       const { id } = task;
       const response = await axios.put(`${this.API_URL}/${id}`, task);
+      return response.data;
+    } catch (error) {
+      console.error("ERROR: ", error);
+      throw error;
+    }
+  }
+
+  /**
+   * register
+   */
+  public async register(task: NewTaskType) {
+    try {
+      const response = await axios.post(this.API_URL, task);
       return response.data;
     } catch (error) {
       console.error("ERROR: ", error);
