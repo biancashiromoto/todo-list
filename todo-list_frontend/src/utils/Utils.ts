@@ -39,16 +39,16 @@ export default class Utils {
   public async changePriority(
     e: ChangeEvent<HTMLSelectElement>,
     task: TaskType,
-    setPriority: Dispatch<SetStateAction<TaskType["priority"]>>
+    setCurrTask: Dispatch<SetStateAction<TaskType>>
   ) {
     const selectedPriority = e.target.value;
       const updatedTask = {
         ...task,
-        priority: e.target.value,
+        priority: selectedPriority,
       }
       try {
         task = await requests.update(updatedTask);
-        setPriority(selectedPriority);
+        setCurrTask(updatedTask);
       } catch (error) {
         console.error("Error updating task: ", error);
       }
