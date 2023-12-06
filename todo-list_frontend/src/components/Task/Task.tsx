@@ -7,9 +7,8 @@ import { TaskProps } from "../../interfaces/TaskProp";
 const utils = new Utils();
 
 function Task({ task }: TaskProps) {
-  // const [isTaskCompleted, setIsTaskCompleted] = useState<boolean>(task.status === "completed");
   const [priority, setPriority] = useState<TaskType["priority"]>(task.priority);
-  const [title, setTitle] = useState<TaskType["title"]>(task.title);
+  // const [title, setTitle] = useState<TaskType["title"]>(task.title);
 
   const [currTask, setCurrTask] = useState<TaskType>({
     id: task.id,
@@ -38,8 +37,8 @@ function Task({ task }: TaskProps) {
           <input
             name={`task-name-${task.id}`}
             type="text"
-            value={title}
-            onChange={(e) => utils.changeTitle(e, task, setTitle)}
+            value={currTask.title}
+            onChange={(e) => utils.changeTitle(e, task, setCurrTask)}
           />
         </label>
         <select
