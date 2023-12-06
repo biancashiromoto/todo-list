@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from "react";
 import Requests from "../services/requests";
-import { TaskType } from "../types/TaskType";
+import { NewTaskType, TaskType } from "../types/TaskType";
 
 export default class Utils {
   private requests: Requests;
@@ -76,6 +76,18 @@ export default class Utils {
       setTitle(newTitle);
     } catch (error) {
       console.error("Error updating task: ", error);
+    }
+  }
+
+  /**
+   * createTask
+   */
+  public async createTask(task: NewTaskType,) {
+    try {
+      const createdTask = await this.requests.register(task);
+      console.log(createdTask);
+    } catch (error) {
+      console.error("Error creating task: ", error);
     }
   }
   
