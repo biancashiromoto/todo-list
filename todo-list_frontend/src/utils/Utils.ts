@@ -60,7 +60,7 @@ export default class Utils {
   public async changeTitle(
     e: ChangeEvent<HTMLInputElement>,
     task: TaskType,
-    setTitle: Dispatch<SetStateAction<TaskType["title"]>>
+    setTask: Dispatch<SetStateAction<TaskType>>
   ) {
     const newTitle = e.target.value;  
     if (!newTitle) {
@@ -74,7 +74,7 @@ export default class Utils {
   
     try {
       task = await requests.update(updatedTask);
-      setTitle(newTitle);
+      setTask(updatedTask);
     } catch (error) {
       console.error("Error updating task: ", error);
     }
