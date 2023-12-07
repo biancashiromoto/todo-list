@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TaskType } from "../../types/TaskType";
 import "./Task.css";
+import "../../App.css";
 import Utils from "../../utils/Utils";
 import { TaskProps } from "../../interfaces/Props";
 
@@ -28,9 +29,8 @@ function Task({ task, setData }: TaskProps) {
           className="input input__status"
           />
         <label htmlFor={`task-${task.id}`}>
-          <span className="hidden">Task: </span>
           <input
-            name={`task-${task.id}`}
+            title={`task-${task.id}`}
             type="text"
             value={currTask.title}
             onChange={(e) => utils.changeTitle(e, task, setCurrTask)}
@@ -52,6 +52,7 @@ function Task({ task, setData }: TaskProps) {
           <option value="low">low</option>
         </select>
         <button
+          title="Delete task"
           type="button"
           onClick={async (e) => {
             e.preventDefault();
@@ -60,7 +61,6 @@ function Task({ task, setData }: TaskProps) {
           }}
           className="button__delete"
         >
-        <span className="hidden">Delete task</span>
       </button>
     </div>
   )
