@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormProps } from "../../interfaces/Props";
 import { NewTaskType } from "../../types/TaskType";
 import Utils from "../../utils/Utils";
+import "../../App.css";
 
 const utils = new Utils();
 
