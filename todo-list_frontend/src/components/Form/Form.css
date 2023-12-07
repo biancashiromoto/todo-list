@@ -21,6 +21,7 @@
 .button__create-task {
   border-radius: 10px;
   height: 2.5rem;
+  font-family: 'PT Serif', serif;
 }
 
 h5 {
