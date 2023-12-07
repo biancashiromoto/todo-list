@@ -4,6 +4,7 @@ import "./Task.css";
 import "../../App.css";
 import Utils from "../../utils/Utils";
 import { TaskProps } from "../../interfaces/Props";
+import Swal from "sweetalert2";
 
 const utils = new Utils();
 
@@ -15,6 +16,27 @@ function Task({ task, setData }: TaskProps) {
     priority: task.priority,
     status: task.status,
   });
+
+  const handleDelete = async () => {
+    const alert = await Swal.fire({
+      title: "Delete task",
+      text: "This cannot be reverted",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    });
+
+    if (alert.isConfirmed) {
+      try {
+        const updatedData = await utils.deleteTask(task.id);
+        setData(updatedData);
+      } catch (error) {
+        Swal.fire("Error!", "Failed to delete the task.", "error");
+      }
+    }
+  }
 
   return (
     <div className="task__item">
@@ -56,8 +78,7 @@ function Task({ task, setData }: TaskProps) {
           type="button"
           onClick={async (e) => {
             e.preventDefault();
-            const updatedTasks = await utils.deleteTask(task.id);
-            setData(updatedTasks);
+            handleDelete();
           }}
           className="button__delete"
         >
