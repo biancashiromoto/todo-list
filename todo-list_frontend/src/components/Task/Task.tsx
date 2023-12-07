@@ -56,8 +56,8 @@ function Task({ task, setData }: TaskProps) {
           type="button"
           onClick={async (e) => {
             e.preventDefault();
-            const tasks = await utils.deleteTask(task.id);
-            setData(tasks);
+            const updatedTasks = await utils.deleteTask(task.id);
+            setData(updatedTasks);
           }}
           className="button__delete"
         >
