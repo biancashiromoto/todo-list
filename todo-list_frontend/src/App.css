@@ -9,20 +9,23 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-bottom: 30vh;
 }
 
 .input {
   border: none;
   background-color: unset;
+  padding: .75rem .25rem;
+}
+
+.input__title {
+  width: 45vw;
+}
+
+.input__priority {
+  text-align: center;
+  width: 25vw;
 }
 
 .hidden {
   display: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
