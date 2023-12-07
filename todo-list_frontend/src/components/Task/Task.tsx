@@ -25,14 +25,17 @@ function Task({ task, setData }: TaskProps) {
             utils.changeStatus(e, task, setCurrTask);
           }}
           name="status"
+          className="input input__status"
           />
-        <label htmlFor={`task-name-${task.id}`}>
-          <span style={{display: "none"}}>Task: </span>
+        <label htmlFor={`task-${task.id}`}>
+          <span className="hidden">Task: </span>
           <input
-            name={`task-name-${task.id}`}
+            name={`task-${task.id}`}
             type="text"
             value={currTask.title}
             onChange={(e) => utils.changeTitle(e, task, setCurrTask)}
+            className="input input__title"
+            maxLength={35}
           />
         </label>
         <select
@@ -42,12 +45,12 @@ function Task({ task, setData }: TaskProps) {
             utils.changePriority(e, task, setCurrTask);
           }}
           name="priority"
+          className="input input__priority"
         >
           <option value="high">high</option>
           <option value="medium">medium</option>
           <option value="low">low</option>
         </select>
-        <p>{currTask.status}</p>
         <button
           type="button"
           onClick={async (e) => {
@@ -55,8 +58,9 @@ function Task({ task, setData }: TaskProps) {
             const tasks = await utils.deleteTask(task.id);
             setData(tasks);
           }}
+          className="button__delete"
         >
-        Delete task
+        <span className="hidden">Delete task</span>
       </button>
     </div>
   )
