@@ -1,0 +1,28 @@
+.task__form {
+  border: 1px solid gray;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto 2rem auto;
+  padding: 1.5rem;
+}
+
+.task__title-priority {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.input__new-task--title {
+  border: 1px solid gray;
+}
+
+.button__create-task {
+  border-radius: 10px;
+  height: 2.5rem;
+}
+
+h5 {
+  margin: 0.25rem;
+}
