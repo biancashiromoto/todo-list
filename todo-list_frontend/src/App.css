@@ -14,7 +14,9 @@
 .input {
   border: none;
   background-color: unset;
+  font-family: 'PT Serif', serif;
   padding: .75rem .25rem;
+  font-size: 1rem;
 }
 
 .input__title {
