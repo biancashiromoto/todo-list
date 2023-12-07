@@ -27,6 +27,7 @@ function App() {
   return (
     <>
       <h1>Todo list</h1>
+      <Form data={data} setData={setData} />
       <article className="task__list">
         {data.length > 0 ? (
           data.map((task: TaskType) => (
@@ -34,7 +35,6 @@ function App() {
           ))
         ) : "No tasks."}
       </article>
-      <Form data={data} setData={setData} />
     </>
   )
 }
