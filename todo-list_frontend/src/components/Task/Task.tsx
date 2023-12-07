@@ -19,12 +19,12 @@ function Task({ task, setData }: TaskProps) {
 
   const handleDelete = async () => {
     const alert = await Swal.fire({
-      title: "Delete task",
+      title: "Are you sure?",
       text: "This cannot be reverted",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
       confirmButtonText: "Delete",
     });
 
