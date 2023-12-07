@@ -1,11 +1,11 @@
-import { ITask } from "../interfaces/ITask";
+// import { ITask } from "../interfaces/ITask";
 import TaskModel from "../models/task.model";
 import { ResponseError, ResponseSuccess } from "../types/Responses";
 import { TaskType } from "../types/TaskType";
 
 export default class TaskService {
     constructor(
-        private taskModel: ITask = new TaskModel(),
+        private taskModel: TaskModel = new TaskModel(),
     ) {}
 
     public async findAll(): Promise<ResponseSuccess> {
@@ -31,7 +31,7 @@ export default class TaskService {
     }
 
     public async deleteTask(id: TaskType["id"]): Promise<ResponseSuccess | ResponseError> {
-        const message = await this.taskModel.deleteTask(id);
-        return { status: "SUCCESSFUL", data: { message }};
+        const updatedTasks = await this.taskModel.deleteTask(id);
+        return { status: "SUCCESSFUL", data: updatedTasks };
     }
 }
