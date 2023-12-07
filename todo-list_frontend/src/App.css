@@ -6,8 +6,19 @@
 }
 
 .task__list {
-  margin: 0 auto;
-  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 30vh;
+}
+
+.input {
+  border: none;
+  background-color: unset;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
