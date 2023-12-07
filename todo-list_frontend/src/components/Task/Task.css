@@ -3,3 +3,25 @@
   display: flex;
   justify-content: space-between;
 }
+
+.input__status {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.input__title {
+  width: 30vw;
+}
+
+.input__priority {
+  width: 20vw;
+}
+
+.button__delete::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url("../../assets/img/icons/delete.svg");
+  background-size: cover;
+  display: inline-block;
+}
