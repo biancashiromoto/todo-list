@@ -7,3 +7,9 @@ export type TaskType = {
     priority: Priority,
     status: Status
 }
+
+export type NewTaskType = {
+    title: string,
+    priority: Priority,
+    status: Status
+}
