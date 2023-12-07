@@ -1,9 +1,9 @@
-import { TaskType } from '../types/TaskType';
+import { NewTaskType, TaskType } from '../types/TaskType';
 
 export interface ITask {
-    findAll(): Promise<ITask[]>,
-    findByPk(id: TaskType["id"]): Promise<ITask | null>,
-    register(task: TaskType): Promise<ITask>,
-    update(id: TaskType["id"], task: TaskType): Promise<ITask | null>,
-    deleteTask(id: TaskType["id"]): Promise<string>
+    findAll(): Promise<TaskType[]>,
+    findByPk(id: TaskType["id"]): Promise<TaskType | null>,
+    register(task: TaskType): Promise<NewTaskType>,
+    update(id: TaskType["id"], task: NewTaskType): Promise<TaskType | null>,
+    deleteTask(id: TaskType["id"]): Promise<TaskType[]>
 }
