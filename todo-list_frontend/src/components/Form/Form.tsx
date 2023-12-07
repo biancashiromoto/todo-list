@@ -4,6 +4,7 @@ import { NewTaskType } from "../../types/TaskType";
 import Utils from "../../utils/Utils";
 import "../../App.css";
 import "./Form.css";
+// import Swal from "sweetalert2";
 
 const utils = new Utils();
 
@@ -13,6 +14,21 @@ function Form({ data, setData }: FormProps) {
     priority: "low",
     status: "pending"
   });
+
+  // const handleCreateTask = async () => {
+  //   try {
+  //     const createdTask = await utils.createTask(newTask, setNewTask);        
+  //     setData([...data, createdTask]);
+  //   } catch (error) {
+  //     Swal.fire({
+  //       title: "Create task",
+  //       text: "There was an error creating your task. Please review your information.",
+  //       icon: "warning",
+  //       confirmButtonColor: "#3085d6",
+  //       confirmButtonText: "Ok",
+  //     });
+  //   }
+  // }
 
   return (
     <form className="task__form">
