@@ -1,6 +1,9 @@
-import { ITask } from "../interfaces/ITask";
+// import { ITask } from "../interfaces/ITask";
+import { NewTaskType, TaskType } from "./TaskType";
 
 export type MessageType = { message: string };
+
+export type ResponseSuccessData = TaskType | TaskType[] | NewTaskType;
 
 export type ResponseErrorType =
   "INVALID_DATA" |
@@ -11,7 +14,7 @@ export type ResponseErrorType =
 
 export type ResponseSuccess = {
     status: "SUCCESSFUL" | "CREATED",
-    data: ITask | ITask[] | MessageType,
+    data: ResponseSuccessData
 }
 
 export type ResponseError = {
