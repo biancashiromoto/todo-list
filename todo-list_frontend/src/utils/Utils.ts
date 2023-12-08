@@ -25,6 +25,7 @@ export default class Utils {
         setTask(updatedTask);
       } catch (error) {
         console.error("Error updating task: ", error);
+        return null;
       }
   }
 
@@ -46,6 +47,7 @@ export default class Utils {
         setCurrTask(updatedTask);
       } catch (error) {
         console.error("Error updating task: ", error);
+        return null;
       }
   }
 
@@ -57,39 +59,48 @@ export default class Utils {
     task: TaskType,
     setTask: Dispatch<SetStateAction<TaskType>>
   ) {
-    const newTitle = e.target.value;  
+    const newTitle = e.target.value;
     if (!newTitle) {
       throw new Error("Task must have a title.");
     }
-  
-    const updatedTask = {
-      ...task,
-      title: newTitle,
-    };
-  
-    try {
-      task = await requests.update(updatedTask);
-      setTask(updatedTask);
-    } catch (error) {
-      console.error("Error updating task: ", error);
+
+    const isTitleInUse = await this.isTitleInUse(task.title);
+    if (!isTitleInUse) {
+      const updatedTask = {
+        ...task,
+        title: newTitle,
+      };
+      try {
+        task = await requests.update(updatedTask);
+        setTask(updatedTask);
+      } catch (error) {
+        console.error("Error updating task: ", error);
+        return null;
+      }
     }
+    throw new Error("Title already in use."); 
   }
   
   /**
    * createTask
    */
   public async createTask(task: NewTaskType, setNewTask: Dispatch<React.SetStateAction<NewTaskType>>) {
-    try {
-      const createdTask = await requests.register(task);
-      setNewTask({
-        title: "",
-        priority: "low",
-        status: "pending"
-      });
-      return createdTask;
-    } catch (error) {
-      console.error("Error creating task: ", error);
+    const isTitleInUse = await this.isTitleInUse(task.title);
+    if (!isTitleInUse) {
+        try {
+          const createdTask = await requests.register(task);
+          setNewTask({
+            title: "",
+            priority: "low",
+            status: "pending"
+          });
+        return createdTask;
+        } catch (error) {
+          console.error("Error creating task: ", error);
+          return null;
+        }
     }
+    throw new Error("Title already in use."); 
   }
 
   /**
@@ -102,7 +113,17 @@ export default class Utils {
       return tasks;
     } catch (error) {
       console.error("Error creating task: ", error);
+      return null;
     }
+  }
+
+  /**
+   * isTitleInUse
+   */
+  public async isTitleInUse(title: TaskType["title"]) {
+    const tasks = await requests.findAll();
+    const titles = tasks.map((task: TaskType) => task.title);
+    return titles.includes(title);
   }
   
 }
