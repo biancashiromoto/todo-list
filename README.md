@@ -1,5 +1,5 @@
 # TODO LIST
-
+# 🚧 EM CONSTRUÇÃO 🚧
 ### Uso:
 
 1. Navegar até o diretório `todo-list_backend` e rodar o comando `npm i` para instalar as dependências.
