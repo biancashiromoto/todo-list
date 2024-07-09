@@ -1,0 +1,13 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "scripts": {
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd todo-list_backend && npm install",
+    "install:frontend": "cd todo-list_frontend && npm install",
+    "docker:up": "docker-compose up -d --build",
+    "db:reset": "cd todo-list_backend && npm run db:reset",
+    "start:frontend": "cd todo-list_frontend && npm start",
+    "start": "npm run install:all && npm run docker:up && npm run db:reset && npm run start:frontend"
+  }
+}
